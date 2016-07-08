@@ -1,21 +1,9 @@
 var amScrolling = false;
 var items = document.querySelectorAll('.item:not(.active)');
 var itemsA = document.querySelectorAll('.item.active');
+var currentTopIndex = 0;
 
-setInterval(function () {
-	for (let i = 0 ; i < items.length; i++) {
-		setTimeout( function () {
-
-			itemsA[i].classList.toggle('active');
-			items[i].classList.toggle('active');
-			document.getElementById("flip"+i).play();
-		}, 150*i);
-	}
-
-}, 5000);
-
-
-var stuffToShow = [
+var NOTIFICATIONS = [
 	{ news:"Your apple has updated", time:"2 days ago" },
 	{ news:"Your banana has updated", time:"3 days ago" },
 	{ news:"Your carrot has updated", time:"4 days ago" },
@@ -43,12 +31,49 @@ var stuffToShow = [
 	{ news:"Your zebra tree has updated", time:"27 days ago" }
 ];
 
+function getNextBatchOfStuff() {
+	console.log('GETTING', currentTopIndex, currentTopIndex + items.length);
+	var nextBatch = NOTIFICATIONS.slice(currentTopIndex, currentTopIndex + items.length);
+	currentTopIndex += items.length;
 
-var msg = `${stuffToShow[0].news} <span class="time"> ${stuffToShow[0].time}</span>`;
+	if (nextBatch.length < items.length) {
+		console.log('NEED EXTRAS', nextBatch.length, items.length);
+		var extras = NOTIFICATIONS.slice(0, items.length - nextBatch.length);
+		console.log('EXTRAS', extras);
+		nextBatch = nextBatch.concat(extras);
+		currentTopIndex = items.length - nextBatch.length;
+	}
 
-var int;
-for (int = 0; int < items.length; int++) {
+	console.log('NEXT BATCH', nextBatch.length, nextBatch);
+
+	return nextBatch;
+}
+
+setInterval(function () {
+	var stuffToShow = getNextBatchOfStuff();
+	console.log('SHOWING', stuffToShow);
+
+	for (let i = 0 ; i < items.length; i++) {
+		setTimeout( function () {
+
+			var msg = `${stuffToShow[i].news} <span class="time"> ${stuffToShow[i].time}</span>`;
+			if(items[i].classList.contains('active'))
+				itemsA[i].innerHTML = msg;
+			else
+				items[i].innerHTML = msg;
+
+			itemsA[i].classList.toggle('active');
+			items[i].classList.toggle('active');
+			document.getElementById("flip"+i).play();
+		}, 150*i);
+	}
+
+}, 5000);
+
+
+var initialStuff = getNextBatchOfStuff();
+for (var int = 0; int < items.length; int++) {
+	var msg = `${initialStuff[int].news} <span class="time"> ${initialStuff[int].time}</span>`;
     itemsA[int].innerHTML = msg;
-    items[int].innerHTML = msg;
 };
 
