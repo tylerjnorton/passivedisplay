@@ -2,10 +2,12 @@ body{
 	background-color: lightblue;
 	font-family: helvetica, sans-serif;
 	font-weight: 700;
+	margin:0;
+	padding:0;
 }
 section{
 	position: relative;
-	height:10vh;
+	height:9.8vh;
 	margin:0;
 	padding:0;
 }
@@ -29,13 +31,13 @@ section{
 	font-size: 4.5vh;
 	padding: 1.5vh 1.5vw;
 	text-align: left;
-	margin: .5vh 1vw;
+	margin: 1.5vh 1vw 1.5vh 1vw;
 	height: 5vh;
 	z-index: 1;
 	width:94vw;
 	position: absolute;
 	transform-origin: 0px 0px;
-	transition: all 0s ease .2s;
+	transition: transform 0s ease .28s;
 	transform: rotateX(90deg);
 }
 .item.active {
@@ -50,16 +52,4 @@ section{
 .time{
 	float:right;
 	text-align: right;
-}
-#two > div{
-	transition-delay: .04;
-}
-#three > div{
-	transition-delay: .08;
-}
-#four > div{
-	transition-delay: .12;
-}
-#five > div{
-	transition-delay: .16;
 }

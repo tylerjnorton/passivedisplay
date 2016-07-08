@@ -1,17 +1,39 @@
 var amScrolling = false;
-var i = 0;
 var x = document.getElementById("flip"); 
-var items = document.querySelectorAll('.item');
+var items = document.querySelectorAll('.item:not(.active)');
+var itemsA = document.querySelectorAll('.item.active');
 
 setInterval(function () {
-	var next = i + 1;
-	if (i + 1 >= items.length) next = 0;
-	items[i].classList.toggle('active');
-	items[next].classList.toggle('active');
-	x.play();
+	for (let i = 0 ; i < items.length; i++) {
+		setTimeout( function () {
 
-	i = i + 1;
+			itemsA[i].classList.toggle('active');
+			items[i].classList.toggle('active');
+			x.play();	
+		}, 100*i);
+	}
 
-	if (i >= items.length) i = 0;
+}, 10000);
 
-}, 3000);
+
+var stuffToShow = [
+	{ news:"Your app has updated", time:"2 days ago" },
+	{ news:"Your app has updated", time:"3 days ago" },
+	{ news:"Your app has updated", time:"4 days ago" },
+	{ news:"Your app has updated", time:"5 days ago" },
+	{ news:"Your app has updated", time:"6 days ago" },
+	{ news:"Your app has updated", time:"7 days ago" },
+	{ news:"Your app has updated", time:"8 days ago" },
+	{ news:"Your app has updated", time:"9 days ago" },
+	{ news:"Your app has updated", time:"10 days ago" },
+	{ news:"Your app has updated", time:"11 days ago" },
+	{ news:"Your app has updated", time:"12 days ago" },
+	{ news:"Your app has updated", time:"13 days ago" }
+];
+
+var msg = `${stuffToShow[0].news} <span class="time"> ${stuffToShow[0].time}</span>`;
+var int;
+for (int = 0; int < items.length; int++) {
+    itemsA[int].innerHTML = msg;
+    items[int].innerHTML = msg;
+};
