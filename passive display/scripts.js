@@ -32,19 +32,14 @@ var NOTIFICATIONS = [
 ];
 
 function getNextBatchOfStuff() {
-	console.log('GETTING', currentTopIndex, currentTopIndex + items.length);
 	var nextBatch = NOTIFICATIONS.slice(currentTopIndex, currentTopIndex + items.length);
 	currentTopIndex += items.length;
 
 	if (nextBatch.length < items.length) {
-		console.log('NEED EXTRAS', nextBatch.length, items.length);
 		var extras = NOTIFICATIONS.slice(0, items.length - nextBatch.length);
-		console.log('EXTRAS', extras);
 		nextBatch = nextBatch.concat(extras);
-		currentTopIndex = items.length - nextBatch.length;
+		currentTopIndex = extras.length;
 	}
-
-	console.log('NEXT BATCH', nextBatch.length, nextBatch);
 
 	return nextBatch;
 }
