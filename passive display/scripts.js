@@ -2,6 +2,7 @@ var amScrolling = false;
 var items = document.querySelectorAll('.item:not(.active)');
 var itemsA = document.querySelectorAll('.item.active');
 var currentTopIndex = 0;
+var SOUND = true;
 
 var NOTIFICATIONS = [
 	{ news:"Your apple has updated", time:"1 days ago" },
@@ -60,7 +61,7 @@ setInterval(function () {
 
 			itemsA[i].classList.toggle('active');
 			items[i].classList.toggle('active');
-			document.getElementById("flip"+i).play();
+			if(SOUND) document.getElementById("flip"+i).play();
 		}, 150*i);
 	}
 
