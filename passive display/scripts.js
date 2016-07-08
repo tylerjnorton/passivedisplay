@@ -1,5 +1,4 @@
 var amScrolling = false;
-var x = document.getElementById("flip"); 
 var items = document.querySelectorAll('.item:not(.active)');
 var itemsA = document.querySelectorAll('.item.active');
 
@@ -9,11 +8,11 @@ setInterval(function () {
 
 			itemsA[i].classList.toggle('active');
 			items[i].classList.toggle('active');
-			x.play();	
-		}, 100*i);
+			document.getElementById("flip"+i).play();
+		}, 150*i);
 	}
 
-}, 10000);
+}, 5000);
 
 
 var stuffToShow = [
