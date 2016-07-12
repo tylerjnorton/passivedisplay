@@ -79,4 +79,6 @@ navigator.geolocation.getCurrentPosition(function (location) {
 		});
 
 	}, 5000);
+}, function (err) {
+	console.log('ERROR GETTING LOCATION', err, err.stack);
 });
