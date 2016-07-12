@@ -3,6 +3,9 @@
 ## Development Mode
 ```
 $ http-server src
+
+OR THIS
+http-server /Users/tylernorton/Desktop/passivedisplay/src/
 ```
 
 ## Setup for deployment
