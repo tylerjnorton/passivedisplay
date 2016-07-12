@@ -15,22 +15,7 @@ var NOTIFICATIONS = [
 	{ news:"Your hippo has updated", time:"8 days ago" },
 	{ news:"Your indie band has updated", time:"9 days ago" },
 	{ news:"Your juice has updated", time:"10 days ago" },
-	{ news:"Your kowala has updated", time:"11 days ago" },
-	{ news:"Your lemon tree has updated", time:"12 days ago" },
-	{ news:"Your minecraft has updated", time:"13 days ago" },
-	{ news:"Your norton antivirus have updated", time:"14 days ago" },
-	{ news:"Your octopus has updated", time:"15 days ago" },
-	{ news:"Your puddle of mudd band has updated", time:"16 days ago" },
-	{ news:"Your queen album has updated", time:"17 days ago" },
-	{ news:"Your reddit thread has updated", time:"18 days ago" },
-	{ news:"Your stapler tree has updated", time:"19 days ago" },
-	{ news:"Your tractor has updated", time:"20 days ago" },
-	{ news:"Your underpants band has updated", time:"21 days ago" },
-	{ news:"Your viagra has updated", time:"22 days ago" },
-	{ news:"Your wiggle room has updated", time:"23 days ago" },
-	{ news:"Your x-ray vision has updated", time:"24 days ago" },
-	{ news:"Your yoyo vision has updated", time:"25 days ago" },
-	{ news:"Your zebra tree has updated", time:"26 days ago" }
+	{ news:"Your kowala has updated", time:"11 days ago" }
 ];
 
 function getNextBatchOfStuff() {
@@ -74,3 +59,24 @@ for (var int = 0; int < items.length; int++) {
     itemsA[int].innerHTML = msg;
 };
 
+navigator.geolocation.getCurrentPosition(function (location) {
+	console.log(location);
+	var lat = location.coords.latitude;
+	var long = location.coords.longitude;
+
+	setInterval(function () {
+
+		fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=6f45d2aee41c360800b53ed8ca16549d`)
+		.then(res => res.json())
+		.then(function (res) {
+			console.log('RES', res);
+			res.weather.forEach(function (item) {
+				NOTIFICATIONS.push({ news: item.description, time: moment(new Date(res.dt * 1000)).fromNow()})	
+			})
+		})
+		.catch(function (error) {
+			console.log('ERROR', error);
+		});
+
+	}, 5000);
+});
