@@ -59,26 +59,29 @@ for (var int = 0; int < items.length; int++) {
     itemsA[int].innerHTML = msg;
 };
 
+function fetchCurrentLocationWeather () {
+	fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=6f45d2aee41c360800b53ed8ca16549d`)
+	.then(res => res.json())
+	.then(function (res) {
+		console.log('RES', res);
+		res.weather.forEach(function (item) {
+			NOTIFICATIONS.pop();
+			NOTIFICATIONS.unshift({ news: item.description, time: moment(new Date(res.dt * 1000)).fromNow()})	
+		})
+	})
+	.catch(function (error) {
+		console.log('ERROR', error);
+	});
+}
+
+
 navigator.geolocation.getCurrentPosition(function (location) {
 	console.log(location);
-	var lat = location.coords.latitude;
-	var long = location.coords.longitude;
+	window.lat = location.coords.latitude;
+	window.long = location.coords.longitude;
 
-	setInterval(function () {
-
-		fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=6f45d2aee41c360800b53ed8ca16549d`)
-		.then(res => res.json())
-		.then(function (res) {
-			console.log('RES', res);
-			res.weather.forEach(function (item) {
-				NOTIFICATIONS.push({ news: item.description, time: moment(new Date(res.dt * 1000)).fromNow()})	
-			})
-		})
-		.catch(function (error) {
-			console.log('ERROR', error);
-		});
-
-	}, 5000);
+	fetchCurrentLocationWeather();
+	setInterval(fetchCurrentLocationWeather, 1000*60*5);
 }, function (err) {
 	console.log('ERROR GETTING LOCATION', err, err.stack);
 });
