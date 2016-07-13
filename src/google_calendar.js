@@ -1,7 +1,7 @@
 window.google_calendar = function () {
 
 	function template (events) {
-		return `You have ${events.length} events tomorrow.`;
+		return `You have <span class="bigword">${events.length}</span> events <span class="bigword">tomorrow</span>.`;
 	}
 
 	// Create a logger with identifier
@@ -25,7 +25,6 @@ window.google_calendar = function () {
       // 'timeMax': (new Date()).toISOString(), Make this tomorrow at 23:59
 			'showDeleted': false,
 			'singleEvents': true,
-			'maxResults': 100,
 			'orderBy': 'startTime'
 		});
 
@@ -33,12 +32,6 @@ window.google_calendar = function () {
 			var events = resp.items;
 			if (events && events.length) {
         NOTIFICATIONS.unshift({ news: template(events), time: moment(resp.updated).fromNow() });
-
-				// events.forEach(function (event) {
-				// 	log('EVENT', event);
-				// 	NOTIFICATIONS.pop();
-				// 	NOTIFICATIONS.unshift({ news: template(event), time: moment(event.start.dateTime).fromNow() });
-				// });
 			}
 		});
 	}
