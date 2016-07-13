@@ -1,9 +1,11 @@
 body{
-	background-color: lightblue;
+	background-color: #242331;
 	font-family: helvetica, sans-serif;
-	font-weight: 700;
+	font-weight: 600;
 	margin:0;
 	padding:0;
+	color: #fff;
+	text-shadow: 1px 1px 3px #000;
 }
 section{
 	position: relative;
@@ -19,15 +21,12 @@ section{
 	-webkit-box-shadow: 0px .2vw .8vh -1px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px .2vw .8vh -1px rgba(0,0,0,0.75);
 	box-shadow: 0px .2vw .8vh -1px rgba(0,0,0,0.75);
-	background: rgba(39,78,112,1);
-	background: -moz-linear-gradient(top, rgba(39,78,112,1) 0%, rgba(67,116,168,1) 100%);
-	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(39,78,112,1)), color-stop(100%, rgba(67,116,168,1)));
-	background: -webkit-linear-gradient(top, rgba(39,78,112,1) 0%, rgba(67,116,168,1) 100%);
-	background: -o-linear-gradient(top, rgba(39,78,112,1) 0%, rgba(67,116,168,1) 100%);
-	background: -ms-linear-gradient(top, rgba(39,78,112,1) 0%, rgba(67,116,168,1) 100%);
-	background: linear-gradient(to bottom, rgba(39,78,112,1) 0%, rgba(67,116,168,1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#274e70', endColorstr='#4374a8', GradientType=0 );
-	color:white;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7aabbc+0,439aab+100 */
+	background: rgb(122,171,188); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(122,171,188,1) 0%, rgba(67,154,171,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  rgba(122,171,188,1) 0%,rgba(67,154,171,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  rgba(122,171,188,1) 0%,rgba(67,154,171,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7aabbc', endColorstr='#439aab',GradientType=0 ); /* IE6-9 */
 	font-size: 4.5vh;
 	padding: 1.5vh 1.5vw;
 	text-align: left;
@@ -47,9 +46,29 @@ section{
 	z-index: 2;
 } 
 .bigword{
-	color:blue;
+	font-weight: 800;
+	color:#F2FDED;
 }
 .time{
 	float:right;
+	font-weight: 600;
+	padding-top:2.5vh;
 	text-align: right;
+	font-size: 2.5vh;
+}
+.icon img{
+	background-color: rgba(0, 0, 0, .45);
+	border-radius: 1.25vh 1.25vh 1.25vh 1.25vh;
+	-moz-border-radius: 1.25vh 1.25vh 1.25vh 1.25vh;
+	-webkit-border-radius: 1.25vh 1.25vh 1.25vh 1.25vh;
+	-webkit-box-shadow: 0px .2vw .8vh -1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px .2vw .8vh -1px rgba(0,0,0,0.75);
+	box-shadow: 0px .2vw .8vh -1px rgba(0,0,0,0.75);
+	border: 1px solid black;
+	float: left;
+	height: 5vh;
+	width: 5vh;
+	margin-right:1.2vw;
+	margin-left:-.3vw;
+	margin-top: -.3vh;
 }

@@ -66,7 +66,7 @@ function fetchCurrentLocationWeather () {
 		console.log('RES', res);
 		res.weather.forEach(function (item) {
 			NOTIFICATIONS.pop();
-			NOTIFICATIONS.unshift({ news: `It is <span class="bigword">${Math.round(res.main.temp)}°F and ${item.main}</span> outside`, time: moment(new Date(res.dt * 1000)).fromNow()});
+			NOTIFICATIONS.unshift({ news: `<span class="icon"><img src="http://openweathermap.org/img/w/${item.icon}.png" /></span> It is <span class="bigword">${Math.round(res.main.temp)}°F and ${item.main}</span> outside`, time: moment(new Date(res.dt * 1000)).fromNow()});
 		})
 	})
 	.catch(function (error) {
