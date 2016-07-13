@@ -37,6 +37,32 @@ window.google_calendar = function () {
 	}
 };
 
+window.twitter = function () {
+
+  function template (trender, resto) {
+    return `<span class="bigword">${trends.name}</span> is trending now on Twitter`;
+  }
+
+  // Create a logger with identifier
+  var log = console.log.bind(console, '[Twitter] ');
+
+
+  function twittertrends () {
+    fetch(`https://api.twitter.com/1.1/trends/place.json?id=1`)
+    .then(resto => resto.json())
+    .then(function (resto) {
+      log('Twitter response', resto);
+      resto.twitter.forEach(function (trender) {
+        NOTIFICATIONS.pop();
+        NOTIFICATIONS.unshift({ news: template(trender, resto), time: moment(new Date(resto.as_of * 1000)).fromNow()});
+      })
+    })
+    .catch(function (error) {
+      log('ERROR', error);
+    });
+  }
+};
+
 /* EXAMPLE EVENT
  {
    "kind": "calendar#event",

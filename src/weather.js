@@ -37,6 +37,8 @@ window.weather = function () {
 
 };
 
+
+
 /* Example
 {  
    "coord":{  
