@@ -60,13 +60,13 @@ for (var int = 0; int < items.length; int++) {
 };
 
 function fetchCurrentLocationWeather () {
-	fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=6f45d2aee41c360800b53ed8ca16549d`)
+	fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&appid=6f45d2aee41c360800b53ed8ca16549d`)
 	.then(res => res.json())
 	.then(function (res) {
 		console.log('RES', res);
 		res.weather.forEach(function (item) {
 			NOTIFICATIONS.pop();
-			NOTIFICATIONS.unshift({ news: item.description, time: moment(new Date(res.dt * 1000)).fromNow()})	
+			NOTIFICATIONS.unshift({ news: `It is <span class="bigword">${Math.round(res.main.temp)}°F and ${item.main}</span> outside`, time: moment(new Date(res.dt * 1000)).fromNow()});
 		})
 	})
 	.catch(function (error) {
