@@ -4,6 +4,13 @@ window.weather = function () {
 		return `It is <span class="bigword">${Math.round(res.main.temp)}°F and ${item.main}</span> outside`;
 	}
 
+   var ITEM = {
+      news: 'Weather',
+      time: new Date()
+   };
+
+   NOTIFICATIONS.push(ITEM);
+
 	// Create a logger with identifier
 	var log = console.log.bind(console, '[weather] ');
 
@@ -14,8 +21,8 @@ window.weather = function () {
 		.then(function (res) {
 			log('Weather response', res);
 			res.weather.forEach(function (item) {
-				NOTIFICATIONS.pop();
-				NOTIFICATIONS.unshift({ news: template(item, res), time: moment(new Date(res.dt * 1000)).fromNow()});
+            ITEM.news = template(item, res);
+            ITEM.time = new Date(res.dt * 1000);
 			})
 		})
 		.catch(function (error) {

@@ -49,6 +49,11 @@ section{
 	font-weight: 800;
 	color:#F2FDED;
 }
+
+.news {
+	white-space: nowrap;
+}
+
 .time{
 	float:right;
 	font-weight: 600;

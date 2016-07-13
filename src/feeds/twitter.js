@@ -9,7 +9,15 @@ window.twitter = function () {
 
 
 	function fetchCurrentTrends () {
-		fetch(`https://api.twitter.com/1.1/trends/available.json`)
+    var headers = new Headers({
+      'Authorization': 'OAuth oauth_consumer_key="omBmN9SThgiz4XByMjCE5MRDW", oauth_nonce="51b5037eac5ce82fdab93d2ff856110f", oauth_signature="5v72yu2NYeoELI8GKYWxYyLOfG0%3D", oauth_signature_method="HMAC-SHA1", oauth_timestamp="1468450845", oauth_version="1.0"'
+    });
+
+		return fetch(`https://api.twitter.com/1.1/trends/available.json`, { headers: headers, mode: 'no-cors' });
+  }
+
+  fetchCurrentTrends().then(res => console.log('TWITTER', res));
+}
 
 // **************************************************************
 // THIS IS WHERE I STOPPED BEING ABLE TO DO STUFF, IT TRIES, BUT NEEDS THE OAUTH STUFF.
