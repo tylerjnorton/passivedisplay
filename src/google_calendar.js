@@ -1,7 +1,7 @@
 window.google_calendar = function () {
 
-	function template (event) {
-		return `Upcoming event: ${event.summary}`;
+	function template (events) {
+		return `You have ${events.length} events tomorrow.`;
 	}
 
 	// Create a logger with identifier
@@ -21,21 +21,24 @@ window.google_calendar = function () {
 	function listUpcomingEvents() {
 		var request = gapi.client.calendar.events.list({
 			'calendarId': 'primary',
-			'timeMin': (new Date()).toISOString(),
+      // 'timeMin': (new Date()).toISOString(), Make this tomorrow at 0:00
+      // 'timeMax': (new Date()).toISOString(), Make this tomorrow at 23:59
 			'showDeleted': false,
 			'singleEvents': true,
-			'maxResults': 10,
+			'maxResults': 100,
 			'orderBy': 'startTime'
 		});
 
 		request.execute(function(resp) {
 			var events = resp.items;
 			if (events && events.length) {
-				events.forEach(function (event) {
-					log('EVENT', event);
-					NOTIFICATIONS.pop();
-					NOTIFICATIONS.unshift({ news: template(event), time: moment(event.start.dateTime).fromNow() });
-				});
+        NOTIFICATIONS.unshift({ news: template(events), time: moment(resp.updated).fromNow() });
+
+				// events.forEach(function (event) {
+				// 	log('EVENT', event);
+				// 	NOTIFICATIONS.pop();
+				// 	NOTIFICATIONS.unshift({ news: template(event), time: moment(event.start.dateTime).fromNow() });
+				// });
 			}
 		});
 	}
