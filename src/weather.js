@@ -1,16 +1,11 @@
 window.weather = function () {
 
 	function template (item, res) {
-		return `
-		<span class="icon"><img src="http://openweathermap.org/img/w/${item.icon}.png" /></span>
-		 It is 
-		 <span class="bigword">${Math.round(res.main.temp)}°F and ${item.main}</span>
-		  outside
-		  `;
+		return `It is <span class="bigword">${Math.round(res.main.temp)}°F and ${item.main}</span> outside`;
 	}
 
 	// Create a logger with identifier
-	var log = console.log.bind(console, '[google_calendar] ');
+	var log = console.log.bind(console, '[weather] ');
 
 
 	function fetchCurrentLocationWeather () {
@@ -30,7 +25,6 @@ window.weather = function () {
 
 
 	navigator.geolocation.getCurrentPosition(function (location) {
-		console.log(location);
 		window.lat = location.coords.latitude;
 		window.long = location.coords.longitude;
 
@@ -42,3 +36,50 @@ window.weather = function () {
 
 
 };
+
+/* Example
+{  
+   "coord":{  
+      "lon":-71.55,
+      "lat":42.35
+   },
+   "weather":[  
+      {  
+         "id":801,
+         "main":"Clouds",
+         "description":"few clouds",
+         "icon":"02d"
+      }
+   ],
+   "base":"stations",
+   "main":{  
+      "temp":86.88,
+      "pressure":993.6,
+      "humidity":56,
+      "temp_min":81,
+      "temp_max":92.12
+   },
+   "wind":{  
+      "speed":5.84,
+      "deg":217.501
+   },
+   "rain":{  
+      "3h":0.0875
+   },
+   "clouds":{  
+      "all":12
+   },
+   "dt":1468432251,
+   "sys":{  
+      "type":3,
+      "id":1466189885,
+      "message":0.0415,
+      "country":"US",
+      "sunrise":1468401729,
+      "sunset":1468455698
+   },
+   "id":4943170,
+   "name":"Marlborough",
+   "cod":200
+}
+*/
