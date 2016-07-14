@@ -1,7 +1,8 @@
 window.google_calendar = function () {
 
 	function template (events) {
-		return `You have <span class="bigword">${events.length}</span> events <span class="bigword">tomorrow</span>.`;
+    var eventStr = events.length > 1 ? 'event' : 'events';
+		return `You have <span class="bigword">${events.length}</span> ${eventStr} <span class="bigword">tomorrow</span>.`;
 	}
 
 	// Create a logger with identifier
