@@ -20,14 +20,31 @@ window.google_calendar = function () {
 	gapi.auth.authorize({  client_id: CLIENT_ID,  scope: SCOPES.join(' '),  immediate: true }, function (result) {
 		gapi.client.load('calendar', 'v3', function () {
 			listUpcomingEvents();
+      setInterval(listUpcomingEvents, 1000*60*60);
 		});
 	});	
 
 	function listUpcomingEvents() {
+
+    var timeMin = new Date();
+    timeMin.setHours(0);
+    timeMin.setMinutes(0);
+    timeMin.setSeconds(0);
+    timeMin.setDate(timeMin.getDate() + 1);
+
+    var timeMax = new Date();
+    timeMax.setHours(0);
+    timeMax.setMinutes(0);
+    timeMax.setSeconds(0);
+    timeMax.setDate(timeMax.getDate() + 2);
+
+    console.log('TIME MIN', timeMin);
+    console.log('TIME MAX', timeMax);
+
 		var request = gapi.client.calendar.events.list({
 			'calendarId': 'primary',
-      // 'timeMin': (new Date()).toISOString(), Make this tomorrow at 0:00
-      // 'timeMax': (new Date()).toISOString(), Make this tomorrow at 23:59
+      'timeMin': timeMin.toISOString(),
+      'timeMax': timeMax.toISOString(),
 			'showDeleted': false,
 			'singleEvents': true,
 			'orderBy': 'startTime'
@@ -42,9 +59,8 @@ window.google_calendar = function () {
         return;
       }
 
-			var events = resp.items;
-			if (events && events.length) {
-        ITEM.news = template(events);
+			if (resp.items) {
+        ITEM.news = template(resp.items);
         ITEM.time = resp.updated;
 			}
 		});
