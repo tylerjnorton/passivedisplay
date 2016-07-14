@@ -1,7 +1,7 @@
 window.fbAsyncInit = function() {
 
   var template = function (events) {
-    return `You have ${events.length} Facebook events coming up.`;
+    return `You have ${events.length} Facebook events this week.`;
   };
 
   var log = console.log.bind(console, '[facebook] ');
