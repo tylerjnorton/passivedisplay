@@ -19,7 +19,6 @@ window.google_calendar = function () {
 
 	gapi.auth.authorize({  client_id: CLIENT_ID,  scope: SCOPES.join(' '),  immediate: true }, function (result) {
 		gapi.client.load('calendar', 'v3', function () {
-			setInterval(listUpcomingEvents, 1000*60);
 			listUpcomingEvents();
 		});
 	});	
@@ -37,7 +36,7 @@ window.google_calendar = function () {
 		request.execute(function(resp) {
       console.log('RESP', resp);
 
-      if (resp.code !== 200) {
+      if (resp.code === 403) {
         ITEM.news = 'GCal ' + resp.code + ' - ' + resp.message;
         ITEM.time = new Date();
         return;
