@@ -54,9 +54,9 @@ section{
 	float:right;
 	font-weight: 600;
 	text-shadow: none;
-	padding-bottom:
-	color:rgba(255,255,255,.5);
-	padding-top:0vh;
+	padding-bottom:0px;
+	color: rgba(255,255,255,.5);
+	padding-top:2.5vh;
 	text-align: right;
 	font-size: 2.5vh;
 }
