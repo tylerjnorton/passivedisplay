@@ -45,10 +45,6 @@ section{
 	transition: transform .3s ease;
 	z-index: 2;
 } 
-.bigword{
-	font-weight: 800;
-	color:#F2FDED;
-}
 
 .news {
 	white-space: nowrap;
@@ -57,7 +53,10 @@ section{
 .time{
 	float:right;
 	font-weight: 600;
-	padding-top:2.5vh;
+	text-shadow: none;
+	padding-bottom:
+	color:rgba(255,255,255,.5);
+	padding-top:0vh;
 	text-align: right;
 	font-size: 2.5vh;
 }
