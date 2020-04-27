@@ -2,7 +2,7 @@ var amScrolling = false;
 var items = document.querySelectorAll('.item:not(.active)');
 var itemsA = document.querySelectorAll('.item.active');
 var currentTopIndex = 0;
-var SOUND = false;
+var SOUND = true;
 
 var NOTIFICATIONS = [];
 
@@ -70,4 +70,4 @@ showThemSuckas();
 
 setInterval(async () => {
 	NOTIFICATIONS = await fetch('https://adamcoll-passive-display.builtwithdark.com/items').then(res => res.json());	
-}, 6000);
+}, 1000*60);
