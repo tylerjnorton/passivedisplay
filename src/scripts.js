@@ -48,3 +48,7 @@ setInterval(showThemSuckas, 5000);
 
 // Run it now at startup
 showThemSuckas();
+
+setInterval(async () => {
+	NOTIFICATIONS = await fetch('https://adamcoll-passive-display.builtwithdark.com/items').then(res => res.json());	
+});
