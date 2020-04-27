@@ -46,6 +46,27 @@
 		<div class="item active"></div>
 		<div class="item"></div>
 	</section>
+	<button id="goFS">+</button>
+		<script>
+			var goFS = document.getElementById("goFS");
+			goFS.addEventListener("click", function() {
+				document.body.requestFullscreen();
+			}, false);
+			function toggleFullScreen() {
+  var doc = window.document;
+  var docEl = doc.documentElement;
+
+  var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+  var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+  if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+    requestFullScreen.call(docEl);
+  }
+  else {
+    cancelFullScreen.call(doc);
+  }
+}
+		</script>
 	<audio id="flip0" src="flip.mp3" preload="auto"></audio>
 	<audio id="flip1" src="flip.mp3" preload="auto"></audio>
 	<audio id="flip2" src="flip.mp3" preload="auto"></audio>

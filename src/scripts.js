@@ -63,7 +63,7 @@ var video = document.createElement('video');
 video.play();
 
 // Run extra 5 seconds
-setInterval(showThemSuckas, 5000);
+setInterval(showThemSuckas, 1000*60);
 
 // Run it now at startup
 showThemSuckas();
