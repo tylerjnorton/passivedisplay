@@ -30,7 +30,7 @@ function showThemSuckas () {
 			var next = getNextItem();
 			if (!next) return;
 
-			var msg = `<span class="news">${next.news}</span> <span class="time"> ${moment(next.time).fromNow()}</span>`;
+			var msg = `<div class="news">${next.news}</div> <div class="time"> ${moment(next.time).fromNow()}</div>`;
 			if(items[i].classList.contains('active'))
 				itemsA[i].innerHTML = msg;
 			else
