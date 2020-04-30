@@ -2,7 +2,7 @@ var amScrolling = false;
 var items = document.querySelectorAll('.item:not(.active)');
 var itemsA = document.querySelectorAll('.item.active');
 var currentTopIndex = 0;
-var SOUND = false;
+var SOUND = true;
 
 var NOTIFICATIONS = [];
 
