@@ -1,11 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+
 body{
-	background-color: #dbdbdb;
-	font-family: helvetica, sans-serif;
-	font-weight: 600;
+	background-color: #1a1a1a;
+	font-family: 'Abel', sans-serif;
 	margin:0;
 	padding:0;
-	color: #fff;
+	color: rgb(255, 255, 255);
 	text-shadow: 1px 1px 3px #000;
+	
+}
+::backdrop
+{
+    background-color: #1a1a1a;
 }
 section{
 	position: relative;
@@ -17,6 +23,8 @@ section{
 	position:fixed;
 	bottom:0;
 	right:0;
+	margin:0;
+	padding:0;
 	z-index:999;
 	height:200px;
 	width:200px;
@@ -27,17 +35,18 @@ section{
 	-moz-border-radius: .4vw .4vw .4vw .4vw;
 	-webkit-border-radius: .4vw .4vw .4vw .4vw;
 	border: 0;
+	text-transform: uppercase;
 	-webkit-box-shadow: 0px .2vw .8vh -1px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px .2vw .8vh -1px rgba(0,0,0,0.75);
 	box-shadow: 0px .2vw .8vh -1px rgba(0,0,0,0.75);
-    background: linear-gradient(0deg, rgba(0,5,38,1) 0%, rgba(14,2,106,1) 23%, rgba(30,21,186,1) 100%);
-	font-size: 4.5vh;
-	padding: 1.5vh 1vw;
+	background: rgb(0,0,0);
+	background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(31,31,31,1) 48%, rgb(192, 192, 192) 50%, rgba(31,31,31,1) 52%, rgba(0,0,0,1) 100%);
+	padding: 1.5vh 10px;
+	font-size:6.6vh;
 	text-align: left;
 	margin: 1.5vh 1vw 1.5vh 1vw;
 	height: 5vh;
 	z-index: 1;
-	font-weight: 500;
 	width: 96vw;
 	position: absolute;
 	transform-origin: 0px 0px;
@@ -51,44 +60,57 @@ section{
 	z-index: 2;
 } 
 
+.news{
+	width: 80vw;
+	padding-bottom: .5vh;
+	line-height: 5.5vh;
+	display: block;
+}
 
 .time{
 	float:right;
-	font-weight: 600;
 	text-shadow: none;
-	padding-bottom:8px;
+	padding-bottom:2px;
 	padding-right:8px;
-	color: rgba(255,255,255,.5);
+	color: rgba(255,255,255,.25);
 	right:4px;
 	text-align: right;
 	bottom: 0px;
-	font-size: 2.5vh;
+	font-size: 2vh;
+	line-height: 3.9vh;
+	text-transform: none;
 	position:fixed;
 }
+
+
+
+/* ****** FIVE SECTION ONLY ******* */
+
+
 .five .time{
 	float:right;
-	font-weight: 800;
 	text-shadow: none;
-	padding-bottom:8px;
+	padding-bottom:2px;
 	padding-right:8px;
-	color: rgba(255,255,255,.5);
+	color: rgba(255,255,255,.15);
 	right:4px;
 	text-align: right;
 	bottom: 0px;
+	line-height: 8vh;
 	font-size: 5vh;
 	position:fixed;
 }
 
+
 .five .item {
-	font-size: 5.5vh;
     padding: 2vh 1vw;
     text-align: left;
 	margin: 1.5vh 1vw;
-	font-weight: 800;
-    height: 13vh;
+	height: 13vh;
+	line-height:8vh;
     z-index: 1;
 	width: 96vw;
-}
+} 
 
 .five section{
 	position: relative;
@@ -96,9 +118,10 @@ section{
 	margin:0;
 	padding:0;
 }
-.news{
+.five .news{
+	font-size: 5vh;
 	width: 80vw;
 	padding-bottom: .5vh;
-	line-height: 5.5vh;
+	line-height: 7vh;
 	display: block;
 }

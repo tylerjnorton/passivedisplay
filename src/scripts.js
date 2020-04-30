@@ -2,7 +2,7 @@ var amScrolling = false;
 var items = document.querySelectorAll('.item:not(.active)');
 var itemsA = document.querySelectorAll('.item.active');
 var currentTopIndex = 0;
-var SOUND = true;
+var SOUND = false;
 
 var NOTIFICATIONS = [];
 
@@ -30,7 +30,7 @@ function showThemSuckas () {
 			var next = getNextItem();
 			if (!next) return;
 
-			var msg = `<div class="news">${next.news}</div> <div class="time"> ${moment(next.time).fromNow()}</div>`;
+			var msg = `<div class="news">${next.news}</div> <div class="time"> Last Updated<br />${moment(next.time).fromNow()}</div>`;
 			if(items[i].classList.contains('active'))
 				itemsA[i].innerHTML = msg;
 			else
@@ -63,11 +63,11 @@ var video = document.createElement('video');
 video.play();
 
 // Run extra 5 seconds
-setInterval(showThemSuckas, 1000*60);
+setInterval(showThemSuckas, 1000*20);
 
 // Run it now at startup
 showThemSuckas();
 
 setInterval(async () => {
 	NOTIFICATIONS = await fetch('https://adamcoll-passive-display.builtwithdark.com/items').then(res => res.json());	
-}, 1000*60);
+}, 1000*20);
