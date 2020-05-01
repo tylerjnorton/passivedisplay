@@ -63,11 +63,11 @@ var video = document.createElement('video');
 video.play();
 
 // Run extra 5 seconds
-setInterval(showThemSuckas, 1000*20);
+setInterval(showThemSuckas, 5000);
 
 // Run it now at startup
 showThemSuckas();
 
 setInterval(async () => {
 	NOTIFICATIONS = await fetch('https://adamcoll-passive-display.builtwithdark.com/items').then(res => res.json());	
-}, 1000*20);
+}, 5000);

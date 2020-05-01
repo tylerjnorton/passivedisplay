@@ -7,7 +7,19 @@ body{
 	padding:0;
 	color: rgb(255, 255, 255);
 	text-shadow: 1px 1px 3px #000;
-	
+	position: relative;
+}
+section:first-of-type:before {
+	background-image: url("sticky.svg");
+	background-size: 2vh, 2vh;
+	height: 2vh;
+	width: 2vh;
+	position: absolute;
+	opacity: .35;
+	top: 2.5vh;
+	right: 120px;
+	content: "";
+	z-index: 999;
 }
 ::backdrop
 {
@@ -42,17 +54,18 @@ section{
 	background: rgb(0,0,0);
 	background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(31,31,31,1) 48%, rgb(192, 192, 192) 50%, rgba(31,31,31,1) 52%, rgba(0,0,0,1) 100%);
 	padding: 1.5vh 10px;
-	font-size:6.6vh;
+	font-size:6.7vh;
 	text-align: left;
 	margin: 1.5vh 1vw 1.5vh 1vw;
 	height: 5vh;
 	z-index: 1;
-	width: 96vw;
+	width: 97vw;
 	position: absolute;
 	transform-origin: 0px 0px;
-	transition: transform 0s ease .28s;
+	transition: transform 0s ease .3s;
 	transform: rotateX(90deg);
 }
+
 .item.active {
 	transform-origin: 0px 0px;
 	transform: rotateX(0deg);
@@ -62,7 +75,7 @@ section{
 
 .news{
 	width: 80vw;
-	padding-bottom: .5vh;
+	margin-top: -3px;
 	line-height: 5.5vh;
 	display: block;
 }
