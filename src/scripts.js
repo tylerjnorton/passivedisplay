@@ -24,19 +24,15 @@ function takeNextItems(theArray, howManyToTake) {
 
 function showThemSuckas () {
 
-	const staticItems = NOTIFICATIONS.filter(item => item.static);
-	const howManyMoreWeNeed = items.length - staticItems.length;
-	const dynamicItems = takeNextItems(NOTIFICATIONS.filter(item => !item.static), howManyMoreWeNeed);
-
-	
-
-	console.log({staticItems, dynamicItems})
+	const pinnedItems = NOTIFICATIONS.filter(item => item.pinned);
+	const howManyMoreWeNeed = items.length - pinnedItems.length;
+	const dynamicItems = takeNextItems(NOTIFICATIONS.filter(item => !item.pinned), howManyMoreWeNeed);
 
 	for (let i = 0 ; i < items.length; i++) {
 		setTimeout( function () {
 
 
-			const next = staticItems[i] || dynamicItems[i - staticItems.length];
+			const next = pinnedItems[i] || dynamicItems[i - pinnedItems.length];
 
 			var msg = next ? `<div class="news">${next.news}</div> <div class="time"> Last Updated<br />${moment(next.time).fromNow()}</div>` : '';
 			if(items[i].classList.contains('active'))
