@@ -5,7 +5,11 @@ var SOUND = false;
 var NOTIFICATIONS = [];
 
 function refreshNotifications() {
-	return fetch('https://adamcoll-passive-display.builtwithdark.com/items').then(res => res.json()).then(data => { NOTIFICATIONS = data; });
+	return fetch('https://adamcoll-passive-display.builtwithdark.com/items')
+	.then(res => res.json())
+	.then(data => { 
+		NOTIFICATIONS = data.map(item => ({...item, lastUpdated: new Date(item.lastUpdated), time: new Date(item.time)})); 
+	});
 }
 
 var currentIndex = 0;
@@ -25,7 +29,7 @@ function showThemSuckas () {
 
 	const pinnedItems = NOTIFICATIONS.filter(item => item.pinned);
 	const howManyMoreWeNeed = sections.length - pinnedItems.length;
-	const dynamicItems = takeNextItems(NOTIFICATIONS.filter(item => !item.pinned), howManyMoreWeNeed);
+	const dynamicItems = takeNextItems(NOTIFICATIONS.filter(item => !item.pinned), howManyMoreWeNeed).sort((a,b) => a.time.getTime() - b.time.getTime());
 
 	for (let i = 0 ; i < sections.length; i++) {
 		setTimeout( function () {
@@ -39,7 +43,7 @@ function showThemSuckas () {
 				sections[i].classList.remove('pinned');
 			}
 
-			inactiveItem.innerHTML =  next ? `<div class="news">${next.news}</div> <div class="time"> Last Updated<br />${moment(next.time).fromNow()}</div>` : '';
+			inactiveItem.innerHTML =  next ? `<div class="news">${next.news}</div> <div class="time"> Last Updated<br />${moment(next.lastUpdated).fromNow()}</div>` : '';
 
 			// Flip	
 			inactiveItem.classList.toggle('active');
