@@ -9,7 +9,17 @@ body{
 	text-shadow: 1px 1px 3px #000;
 	position: relative;
 }
-section:first-of-type:before {
+::backdrop
+{
+    background-color: #1a1a1a;
+}
+section{
+	position: relative;
+	height:9.8vh;
+	margin:0;
+	padding:0;
+}
+section.pinned:before {
 	background-image: url("sticky.svg");
 	background-size: 2vh, 2vh;
 	height: 2vh;
@@ -20,16 +30,6 @@ section:first-of-type:before {
 	right: 140px;
 	content: "";
 	z-index: 999;
-}
-::backdrop
-{
-    background-color: #1a1a1a;
-}
-section{
-	position: relative;
-	height:9.8vh;
-	margin:0;
-	padding:0;
 }
 #goFS{
 	position:fixed;

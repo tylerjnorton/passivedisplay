@@ -1,6 +1,5 @@
 var amScrolling = false;
-var items = document.querySelectorAll('.item:not(.active)');
-var itemsA = document.querySelectorAll('.item.active');
+const sections = document.querySelectorAll('section');
 var SOUND = false;
 
 var NOTIFICATIONS = [];
@@ -25,23 +24,27 @@ function takeNextItems(theArray, howManyToTake) {
 function showThemSuckas () {
 
 	const pinnedItems = NOTIFICATIONS.filter(item => item.pinned);
-	const howManyMoreWeNeed = items.length - pinnedItems.length;
+	const howManyMoreWeNeed = sections.length - pinnedItems.length;
 	const dynamicItems = takeNextItems(NOTIFICATIONS.filter(item => !item.pinned), howManyMoreWeNeed);
 
-	for (let i = 0 ; i < items.length; i++) {
+	for (let i = 0 ; i < sections.length; i++) {
 		setTimeout( function () {
-
-
+			const activeItem = sections[i].querySelector(".item.active");
+			const inactiveItem = sections[i].querySelector(".item:not(.active)");
 			const next = pinnedItems[i] || dynamicItems[i - pinnedItems.length];
 
-			var msg = next ? `<div class="news">${next.news}</div> <div class="time"> Last Updated<br />${moment(next.time).fromNow()}</div>` : '';
-			if(items[i].classList.contains('active'))
-				itemsA[i].innerHTML = msg;
-			else
-				items[i].innerHTML = msg;
+			if (next && next.pinned) {
+				sections[i].classList.add('pinned');
+			} else {
+				sections[i].classList.remove('pinned');
+			}
 
-			itemsA[i].classList.toggle('active');
-			items[i].classList.toggle('active');
+			inactiveItem.innerHTML =  next ? `<div class="news">${next.news}</div> <div class="time"> Last Updated<br />${moment(next.time).fromNow()}</div>` : '';
+
+			// Flip	
+			inactiveItem.classList.toggle('active');
+			activeItem.classList.toggle('active');
+		
 
 			if (SOUND) {
 				document.getElementById("flip"+i).play();
@@ -70,6 +73,6 @@ var video = document.createElement('video');
 video.play();
 
 // Run extra 5 seconds
-setInterval(showThemSuckas, 5000);
-setInterval(refreshNotifications, 5000);
+setInterval(refreshNotifications, 120000);
+setInterval(showThemSuckas, 30000);
 refreshNotifications().then(() => showThemSuckas());
