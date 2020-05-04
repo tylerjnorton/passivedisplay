@@ -1,36 +1,44 @@
 var amScrolling = false;
 var items = document.querySelectorAll('.item:not(.active)');
 var itemsA = document.querySelectorAll('.item.active');
-var currentTopIndex = 0;
 var SOUND = false;
 
 var NOTIFICATIONS = [];
 
-function getNextItem() {
-	// To prevent infinite loop, if the array is empty just return null
-	if (NOTIFICATIONS.length < 1) return null;
+function refreshNotifications() {
+	return fetch('https://adamcoll-passive-display.builtwithdark.com/items').then(res => res.json()).then(data => { NOTIFICATIONS = data; });
+}
 
-	// if the current top index is higher than the number of items in the list then reset to 0 and try again.
-	if (currentTopIndex >= NOTIFICATIONS.length) {
-		currentTopIndex = 0;
-		return getNextItem();
+var currentIndex = 0;
+function takeNextItems(theArray, howManyToTake) {
+	const results = [];
+	while (results.length < howManyToTake && results.length <= theArray.length) {
+		if (currentIndex > theArray.length - 1) {
+			currentIndex = 0;
+		}
+		results.push(theArray[currentIndex]);
+		currentIndex++;
 	}
-
-	// we aren't too high so get this index, then increment it
-	const next = NOTIFICATIONS[currentTopIndex];
-	currentTopIndex++;
-	return next;
+	return results
 }
 
 function showThemSuckas () {
 
+	const staticItems = NOTIFICATIONS.filter(item => item.static);
+	const howManyMoreWeNeed = items.length - staticItems.length;
+	const dynamicItems = takeNextItems(NOTIFICATIONS.filter(item => !item.static), howManyMoreWeNeed);
+
+	
+
+	console.log({staticItems, dynamicItems})
+
 	for (let i = 0 ; i < items.length; i++) {
 		setTimeout( function () {
 
-			var next = getNextItem();
-			if (!next) return;
 
-			var msg = `<div class="news">${next.news}</div> <div class="time"> Last Updated<br />${moment(next.time).fromNow()}</div>`;
+			const next = staticItems[i] || dynamicItems[i - staticItems.length];
+
+			var msg = next ? `<div class="news">${next.news}</div> <div class="time"> Last Updated<br />${moment(next.time).fromNow()}</div>` : '';
 			if(items[i].classList.contains('active'))
 				itemsA[i].innerHTML = msg;
 			else
@@ -38,7 +46,10 @@ function showThemSuckas () {
 
 			itemsA[i].classList.toggle('active');
 			items[i].classList.toggle('active');
-			if(SOUND) document.getElementById("flip"+i).play();
+
+			if (SOUND) {
+				document.getElementById("flip"+i).play();
+			}
 		}, 150*i);
 	}
 }
@@ -64,10 +75,5 @@ video.play();
 
 // Run extra 5 seconds
 setInterval(showThemSuckas, 5000);
-
-// Run it now at startup
-showThemSuckas();
-
-setInterval(async () => {
-	NOTIFICATIONS = await fetch('https://adamcoll-passive-display.builtwithdark.com/items').then(res => res.json());	
-}, 5000);
+setInterval(refreshNotifications, 5000);
+refreshNotifications().then(() => showThemSuckas());
