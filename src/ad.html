@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<title>Passive Display</title>
 </head>
+
 <body>
 	<section>
 		<div class="item active"></div>
@@ -12,7 +14,7 @@
 	</section>
 	<section>
 		<div class="item active"></div>
-		<div class="item"></div>	
+		<div class="item"></div>
 	</section>
 	<section>
 		<div class="item active"></div>
@@ -43,29 +45,29 @@
 		<div class="item"></div>
 	</section>
 	<div class="bottomrow">
-		Traveling Bostonian - Order Now!
+		Traveling Bostonian - Order Now on Blurb!
 	</div>
 	<button id="goFS">+</button>
-		<script>
-			var goFS = document.getElementById("goFS");
-			goFS.addEventListener("click", function() {
-				document.body.requestFullscreen();
-			}, false);
-			function toggleFullScreen() {
-  var doc = window.document;
-  var docEl = doc.documentElement;
+	<script>
+		var goFS = document.getElementById("goFS");
+		goFS.addEventListener("click", function () {
+			document.body.requestFullscreen();
+		}, false);
+		function toggleFullScreen() {
+			var doc = window.document;
+			var docEl = doc.documentElement;
 
-  var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
-  var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+			var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+			var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
 
-  if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
-    requestFullScreen.call(docEl);
-  }
-  else {
-    cancelFullScreen.call(doc);
-  }
-}
-		</script>
+			if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+				requestFullScreen.call(docEl);
+			}
+			else {
+				cancelFullScreen.call(doc);
+			}
+		}
+	</script>
 	<audio id="flip0" src="flip.mp3" preload="auto"></audio>
 	<audio id="flip1" src="flip.mp3" preload="auto"></audio>
 	<audio id="flip2" src="flip.mp3" preload="auto"></audio>
@@ -80,4 +82,5 @@
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js'></script>
 	<script src="scripts.js"></script>
 </body>
+
 </html>
