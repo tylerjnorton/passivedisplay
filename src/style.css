@@ -96,6 +96,20 @@ section{
 }
 
 
+/* ****** AD SECTION ONLY ******* */
+
+.bottomrow{
+	height:9.8vh;
+	margin:0;
+	padding:0;
+	position: absolute;
+	bottom: 0;
+	margin: 1.5vh 1vw 1.5vh 1vw;
+	height: 5vh;
+	width: 97vw;
+}
+
+
 
 /* ****** FIVE SECTION ONLY ******* */
 
