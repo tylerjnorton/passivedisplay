@@ -4,7 +4,7 @@ const PLAY_DOPE_SOUND_EFFEX = false;
 let NOTIFICATIONS = [];
 
 function refreshNotifications() {
-  return fetch("https://adamcoll-passive-display.builtwithdark.com/items")
+  return fetch("https://jameschandler-passivedisplay.builtwithdark.com/items")
     .then((res) => res.json())
     .then((data) => {
       NOTIFICATIONS = data.map((item) => ({
